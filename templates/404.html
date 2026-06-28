@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Not found — Job Trail{% endblock %}
+
+{% block content %}
+<div class="empty-state">
+    <p class="empty-title">404 — This page didn't apply.</p>
+    <p class="empty-sub">There's no record at this address.</p>
+    <a href="{{ url_for('dashboard') }}" class="btn-new">Back to the board</a>
+</div>
+{% endblock %}

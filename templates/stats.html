@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Funnel — Job Trail{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <div>
+        <span class="eyebrow">{{ total }} application{{ 's' if total != 1 }} logged</span>
+        <h1>The Funnel</h1>
+    </div>
+</section>
+
+<div class="stat-cards">
+    <div class="stat-card">
+        <span class="stat-value">{{ interview_rate }}%</span>
+        <span class="stat-label">Interview rate</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value">{{ offer_rate }}%</span>
+        <span class="stat-label">Offer rate</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value">{{ funnel.Rejected }}</span>
+        <span class="stat-label">Rejected</span>
+    </div>
+</div>
+
+<div class="funnel-block">
+    <h2 class="section-title">Stage breakdown</h2>
+    <div class="funnel-bars">
+        {% set stages = ['Applied', 'Interview', 'Offer', 'Rejected'] %}
+        {% for stage in stages %}
+        {% set pct = (funnel[stage] / total * 100) if total else 0 %}
+        <div class="funnel-row">
+            <span class="funnel-label">{{ stage }}</span>
+            <div class="funnel-track">
+                <div class="funnel-fill status-{{ stage|lower }}" style="width: {{ pct }}%;"></div>
+            </div>
+            <span class="funnel-count">{{ funnel[stage] }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="trend-block">
+    <h2 class="section-title">Applications over time</h2>
+    {% if monthly_labels %}
+    <canvas id="trendChart" height="90"></canvas>
+    {% else %}
+    <p class="empty-sub">Log a few applications to see your trend here.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if monthly_labels %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script>
+    const ctx = document.getElementById('trendChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ monthly_labels | tojson }},
+            datasets: [{
+                label: 'Applications',
+                data: {{ monthly_values | tojson }},
+                borderColor: '#b5562c',
+                backgroundColor: 'rgba(181, 86, 44, 0.12)',
+                tension: 0.25,
+                fill: true,
+                pointBackgroundColor: '#b5562c',
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, ticks: { precision: 0 } }
+            }
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

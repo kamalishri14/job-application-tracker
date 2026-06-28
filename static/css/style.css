@@ -1,0 +1,489 @@
+/* ============================================
+   Job Trail — design tokens
+   Palette: warm paper, ink, terracotta stamp accent
+   Type: Fraunces (display) + Space Mono (utility/data)
+   Signature: status pills styled like rubber-stamp marks
+   ============================================ */
+
+:root {
+    --paper: #f6f1e7;
+    --paper-raised: #fffdf8;
+    --ink: #2b2521;
+    --ink-soft: #6b6055;
+    --line: #ddd3c2;
+    --stamp: #b5562c;
+    --stamp-soft: #f0dccb;
+    --applied: #6b6055;
+    --interview: #9a7b2f;
+    --offer: #3f7d52;
+    --rejected: #a23e3e;
+
+    --font-display: "Fraunces", Georgia, serif;
+    --font-mono: "Space Mono", monospace;
+
+    --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Topbar ---------- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 32px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--paper-raised);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--stamp);
+    color: var(--paper-raised);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50%;
+    transform: rotate(-8deg);
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+}
+
+.topnav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.topnav a {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.topnav a.active {
+    color: var(--ink);
+    border-bottom-color: var(--stamp);
+}
+
+.btn-new {
+    background: var(--ink);
+    color: var(--paper-raised) !important;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    border-bottom: none !important;
+}
+
+.btn-new:hover { background: var(--stamp); }
+
+/* ---------- Layout ---------- */
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+}
+
+.page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.eyebrow {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+}
+
+h1 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px;
+}
+
+/* ---------- Search ---------- */
+.search-form {
+    display: flex;
+    gap: 8px;
+}
+
+.search-form input {
+    font-family: var(--font-mono);
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-raised);
+    min-width: 240px;
+}
+
+.search-form button {
+    font-family: var(--font-mono);
+    padding: 10px 16px;
+    border: 1px solid var(--ink);
+    background: var(--paper-raised);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.search-form button:hover { background: var(--ink); color: var(--paper-raised); }
+
+/* ---------- Filter chips ---------- */
+.filter-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--paper-raised);
+    color: var(--ink-soft);
+}
+
+.chip.is-active {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: var(--stamp-soft);
+}
+
+.chip-count {
+    font-weight: 700;
+}
+
+/* ---------- Table ---------- */
+.table-wrap {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-raised);
+}
+
+.app-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.app-table th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    padding: 14px 16px;
+    border-bottom: 2px solid var(--ink);
+}
+
+.app-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+}
+
+.app-table tr:last-child td { border-bottom: none; }
+.app-table tr:hover { background: var(--paper); }
+
+.company-cell { font-weight: 700; }
+.muted { color: var(--ink-soft); }
+
+.actions-col { white-space: nowrap; text-align: right; }
+.icon-link {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-left: 12px;
+    border-bottom: 1px dotted var(--ink-soft);
+    background: none;
+    border-top: none; border-left: none; border-right: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    color: var(--ink);
+}
+.icon-link.danger { color: var(--rejected); }
+.inline-form { display: inline; }
+
+/* ---------- Status styling (the "stamp" signature) ---------- */
+.status-select {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.status-applied { color: var(--applied); }
+.status-interview { color: var(--interview); }
+.status-offer { color: var(--offer); }
+.status-rejected { color: var(--rejected); }
+
+.chip.status-applied.is-active { color: var(--applied); border-color: var(--applied); }
+.chip.status-interview.is-active { color: var(--interview); border-color: var(--interview); }
+.chip.status-offer.is-active { color: var(--offer); border-color: var(--offer); }
+.chip.status-rejected.is-active { color: var(--rejected); border-color: var(--rejected); }
+
+/* ---------- Empty state ---------- */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    border: 1.5px dashed var(--line);
+    border-radius: var(--radius);
+}
+
+.empty-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px;
+}
+
+.empty-sub {
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+}
+
+/* ---------- Forms ---------- */
+.record-form {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-wide { grid-column: 1 / -1; }
+
+.field span {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+}
+
+.field input, .field select, .field textarea {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.field input:focus, .field select:focus, .field textarea:focus {
+    outline: 2px solid var(--stamp);
+    outline-offset: 1px;
+}
+
+.field textarea { resize: vertical; font-family: var(--font-mono); }
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn-primary, .btn-ghost {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: 1px solid var(--ink);
+}
+
+.btn-primary {
+    background: var(--ink);
+    color: var(--paper-raised);
+}
+.btn-primary:hover { background: var(--stamp); border-color: var(--stamp); }
+
+.btn-ghost {
+    background: transparent;
+    color: var(--ink);
+}
+.btn-ghost:hover { background: var(--paper); }
+
+/* ---------- Stats page ---------- */
+.stat-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+}
+
+.stat-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--stamp);
+}
+
+.stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+}
+
+.funnel-block, .trend-block {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.funnel-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 40px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.funnel-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.funnel-track {
+    height: 10px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.funnel-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+.funnel-fill.status-applied { background: var(--applied); }
+.funnel-fill.status-interview { background: var(--interview); }
+.funnel-fill.status-offer { background: var(--offer); }
+.funnel-fill.status-rejected { background: var(--rejected); }
+
+.funnel-count { text-align: right; font-weight: 700; }
+
+/* ---------- Flash messages ---------- */
+.flash-stack {
+    max-width: 980px;
+    margin: 16px auto 0;
+    padding: 0 32px;
+}
+
+.flash {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    margin-bottom: 8px;
+    border: 1px solid var(--line);
+}
+
+.flash-success { background: #e8f0e6; border-color: var(--offer); color: #2c4d34; }
+.flash-error { background: #f5e3e0; border-color: var(--rejected); color: #7a2b2b; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--ink-soft);
+    font-size: 12px;
+    border-top: 1px solid var(--line);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+    .topbar { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .container { padding: 24px 16px 60px; }
+    .page-head { flex-direction: column; align-items: stretch; }
+    .search-form input { min-width: 0; flex: 1; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stat-cards { grid-template-columns: 1fr; }
+    .app-table { font-size: 12px; }
+    .app-table th:nth-child(3), .app-table td:nth-child(3) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .funnel-fill { transition: none; }
+}

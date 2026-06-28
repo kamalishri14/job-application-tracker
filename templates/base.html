@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Job Trail{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="topbar">
+        <a href="{{ url_for('dashboard') }}" class="brand">
+            <span class="brand-mark">JT</span>
+            <span class="brand-name">Job Trail</span>
+        </a>
+        <nav class="topnav">
+            <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' }}">Board</a>
+            <a href="{{ url_for('stats') }}" class="{{ 'active' if request.endpoint == 'stats' }}">Funnel</a>
+            <a href="{{ url_for('add_application') }}" class="btn-new">+ New entry</a>
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-stack">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <span>Job Trail — track every application, end to end.</span>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

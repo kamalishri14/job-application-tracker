@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}{{ "Edit" if application else "New" }} Entry — Job Trail{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <div>
+        <span class="eyebrow">{{ "Editing record" if application else "New record" }}</span>
+        <h1>{{ "Edit application" if application else "Log an application" }}</h1>
+    </div>
+</section>
+
+<form class="record-form" method="post"
+      action="{{ url_for('edit_application', app_id=application.id) if application else url_for('add_application') }}">
+
+    <div class="form-grid">
+        <label class="field">
+            <span>Company *</span>
+            <input type="text" name="company" required
+                   value="{{ form_data.company if form_data else (application.company if application else '') }}"
+                   placeholder="e.g. Tata Consultancy Services">
+        </label>
+
+        <label class="field">
+            <span>Role *</span>
+            <input type="text" name="role" required
+                   value="{{ form_data.role if form_data else (application.role if application else '') }}"
+                   placeholder="e.g. Data Analyst">
+        </label>
+
+        <label class="field">
+            <span>Location</span>
+            <input type="text" name="location"
+                   value="{{ form_data.location if form_data else (application.location or '' if application else '') }}"
+                   placeholder="e.g. Bengaluru / Remote">
+        </label>
+
+        <label class="field">
+            <span>Job posting link</span>
+            <input type="url" name="job_link"
+                   value="{{ form_data.job_link if form_data else (application.job_link or '' if application else '') }}"
+                   placeholder="https://…">
+        </label>
+
+        <label class="field">
+            <span>Applied on</span>
+            <input type="date" name="applied_date"
+                   value="{{ form_data.applied_date if form_data else (application.applied_date.isoformat() if application else today) }}">
+        </label>
+
+        <label class="field">
+            <span>Status</span>
+            <select name="status">
+                {% for s in statuses %}
+                    {% set current = form_data.status if form_data else (application.status if application else 'Applied') %}
+                    <option value="{{ s }}" {{ 'selected' if current == s }}>{{ s }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label class="field field-wide">
+            <span>Notes</span>
+            <textarea name="notes" rows="4" placeholder="Recruiter name, interview rounds, follow-up dates…">{{ form_data.notes if form_data else (application.notes or '' if application else '') }}</textarea>
+        </label>
+    </div>
+
+    <div class="form-actions">
+        <a href="{{ url_for('dashboard') }}" class="btn-ghost">Cancel</a>
+        <button type="submit" class="btn-primary">{{ "Save changes" if application else "Add to board" }}</button>
+    </div>
+</form>
+{% endblock %}
