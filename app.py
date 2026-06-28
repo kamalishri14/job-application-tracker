@@ -14,7 +14,7 @@ def create_app():
 
     db_url = os.environ.get("DATABASE_URL", f"sqlite:///{os.path.join(BASE_DIR, 'instance', 'tracker.db')}")
     # Render/Heroku give postgres:// — SQLAlchemy needs postgresql://
-    if db_url.startswith("postgres://"):
+    db_url = os.environ.get("DATABASE_URL", f"sqlite:///{os.path.join(BASE_DIR, 'tracker.db')}")
         db_url = db_url.replace("postgres://", "postgresql://", 1)
 
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url
