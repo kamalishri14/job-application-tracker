@@ -4,6 +4,9 @@ A full-stack web app to track job applications end to end: log every
 application, move it through stages (Applied → Interview → Offer / Rejected),
 and see your conversion funnel at a glance.
 
+You can explore and interact with the live deployment of the application here:
+[Job Trail on Render](https://job-trail.onrender.com)
+
 Built with Python (Flask) on the backend and server-rendered HTML/CSS with
 vanilla JavaScript on the frontend — no frontend framework, no build step.
 
