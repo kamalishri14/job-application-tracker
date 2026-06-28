@@ -12,10 +12,6 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
 
-   def create_app():
-    app = Flask(__name__)
-    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
-
     # Use the writable /tmp folder on Render, use local file for testing
     if os.environ.get("RENDER"):
         db_url = "sqlite:////tmp/tracker.db"
@@ -27,6 +23,7 @@ def create_app():
         db_url = db_url.replace("postgres://", "postgresql://", 1)
 
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
 
