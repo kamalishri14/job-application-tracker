@@ -97,19 +97,6 @@ page aren't empty when you first open them.
    `DATABASE_URL`.
 5. Deploy. Render gives you a live URL like `https://job-trail.onrender.com`.
 
-### Railway / Heroku
-
-Same idea: push to GitHub, connect the repo, set `DATABASE_URL` if using
-Postgres, and the included `Procfile` (`web: gunicorn app:app`) handles the
-start command.
-
-### Environment variables
-
-| Variable       | Required | Description                                  |
-|-----------------|----------|-----------------------------------------------|
-| `SECRET_KEY`    | Recommended | Flask session secret. Set a random string in production. |
-| `DATABASE_URL`  | Optional | Postgres connection string. Falls back to local SQLite if not set. |
-| `PORT`          | Set by host | Used by Render/Heroku automatically. |
 
 ## Why this project
 
@@ -123,6 +110,3 @@ demonstrates:
 - Basic data aggregation/analytics (funnel %, monthly trends) without needing
   a separate analytics stack
 
-## License
-
-MIT — free to use, modify, and deploy.
